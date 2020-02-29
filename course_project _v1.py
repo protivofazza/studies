@@ -243,6 +243,7 @@ def write_contacts_in_txt(address_book_for_txt):
 
 def find_contact(string_to_find):
     print(f'Виконано пошук за запитом "{string_to_find}" серед даних контактів адресної книги')
+    mark = False
     for i in range(len(address_book_in_alphabet_order)):
         temp_aggregator = []
         for j in range(len(address_book_in_alphabet_order[i])):
@@ -252,11 +253,8 @@ def find_contact(string_to_find):
                 temp_aggregator.extend(address_book_in_alphabet_order[i][j])
             elif type(address_book_in_alphabet_order[i][j]) == dict:
                 temp_aggregator.extend(address_book_in_alphabet_order[i][j].values())
-                # for key in address_book_in_alphabet_order[i][j]:
-                #     temp_aggregator.append(key)
-                #     temp_aggregator.append(address_book_in_alphabet_order[i][j])
-        # print(temp_aggregator)
         if string_to_find in temp_aggregator:
+            mark = True
             print("\nЗнайдено відповіність у контакті:", end='')
             print('\n№', address_book_list[i][0], '|', address_book_list[i][4], '|',
                   address_book_list[i][5])
@@ -271,15 +269,14 @@ def find_contact(string_to_find):
             print('Месенджери:')
             for key in address_book_list[i][8].items():
                 print('                 |', key)
-        else:
-            print(f"Збігів серед даних контактів абонентів адресної книги із пошуковим запитом '{string_to_find}' "
+    if not mark:
+        print(f"\nЗбігів серед даних контактів абонентів адресної книги із пошуковим запитом '{string_to_find}' "
                   f"не знайдено..")
-    ttt = input("Для цього натисніть клавішу 'Enter'...")
+    ttt = input("Для продовження натисніть клавішу 'Enter'...")
 
 
 # address_book_list = []
 address_book_in_alphabet_order = []
-
 
 try:
     with open('address_book_in_alphabet_order.pickle', 'rb') as f:
@@ -370,7 +367,7 @@ while check_exit:
 
     elif radio_button == '6':
         print('\nВи вибрали пункт "Знайти контакт"...')
-        find_contact(input("Введіть прізвище, або ім'я, або будь-який реквізит: "))
+        find_contact(input("Введіть прізвище, або ім'я, або будь-який реквізит для пошуку: "))
 
     elif radio_button == '7':
         check_exit = False
