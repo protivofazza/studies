@@ -279,7 +279,7 @@ def find_contact(string_to_find):
 
 # address_book_list = []
 address_book_in_alphabet_order = []
-# contact_list = []
+
 
 
 try:
