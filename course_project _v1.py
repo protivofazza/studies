@@ -281,7 +281,6 @@ def find_contact(string_to_find):
 address_book_in_alphabet_order = []
 
 
-
 try:
     with open('address_book_in_alphabet_order.pickle', 'rb') as f:
         address_book_list = pickle.load(f)
