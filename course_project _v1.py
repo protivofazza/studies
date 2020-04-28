@@ -1,6 +1,5 @@
 import pickle
 
-
 print("Запущено на виконання програму 'Адресна книга'")
 
 
@@ -15,10 +14,10 @@ def create_contact():
                        ]
     default_dict = {'Viber': '333-33-33', 'Messenger': '777-77-77', 'Telegram': 'mavka-lisova'}
     print('Розпочнемо з вводу ПІБ:\n')
-    try:
-        new_contact_def[0] = max(address_book_list)[0] + 1
+    try:    # Унікальний int ідентифікатор для кожного контаку. Кожний новий контакт отримує номер, на один більше за
+        new_contact_def[0] = max(address_book_list)[0] + 1                                  # максимальний з існуючих
     except ValueError:
-        new_contact_def[0] = 1
+        new_contact_def[0] = 1      # Щоб уникнути помилки оператора max() для першого створенго контакту
     new_contact_def[1] = input('Введіть прізвище: ')
     new_contact_def[2] = input("Введіть ім'я: ")
     new_contact_def[3] = input('Введіть по-батькові (якщо немає - введіть пустий рядок, просто натиснувши Enter): ')
@@ -271,7 +270,7 @@ def find_contact(string_to_find):
                 print('                 |', key)
     if not mark:
         print(f"\nЗбігів серед даних контактів абонентів адресної книги із пошуковим запитом '{string_to_find}' "
-                  f"не знайдено..")
+              f"не знайдено..")
     ttt = input("Для продовження натисніть клавішу 'Enter'...")
 
 
@@ -309,7 +308,6 @@ except FileNotFoundError:
          {'Viber': '888-88-88', 'Telegram': '@studentochka'},  # 'Messenger': '888-88-99',
          ],
     ]
-
 
 address_book_in_alphabet_order = address_book_list
 address_book_in_alphabet_order.sort(key=lambda x: x[4])
@@ -373,7 +371,7 @@ while check_exit:
         check_exit = False
         print("Робота програми завершується за вибором користувача.")
         r_button = True if input('Зберегти актуальну версію контактів адресної книги? (Y/y/Т/т): ').lower()[0] \
-                            in ['y', 'т', 'д'] else False
+                           in ['y', 'т', 'д'] else False
         if r_button:
             with open('address_book_in_alphabet_order.pickle', 'wb') as f:
                 pickle.dump(address_book_in_alphabet_order, f)
@@ -387,4 +385,3 @@ while check_exit:
     else:
         print("Ви ввели неіснучий варіант вибору. Спробуйте ще раз.")
         t = input("Для цього натисніть клавішу 'Enter'...")
-
